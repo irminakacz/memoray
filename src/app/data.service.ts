@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { Headers, Http } from '@angular/http';
+import { environment } from '../environments/environment';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -7,11 +8,15 @@ import { Card } from './card';
 
 @Injectable()
 export class DataService {
-  private apiUrl = 'http://localhost:8000';
+  private apiUrl: string;
 
-  constructor(
-    private http: Http
-  ) { }
+  constructor(private http: Http) {
+    if (environment.production) {
+      this.apiUrl = 'https://memoray-api.herokuapp.com';
+    } else {
+      this.apiUrl = 'http://localhost:8000'
+    }
+  }
 
   getCards(): Promise<Card[]> {
     return this.http.get(this.apiUrl + '/cards/')
