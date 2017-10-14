@@ -9,6 +9,7 @@ import { Card } from './card';
 @Injectable()
 export class DataService {
   private apiUrl: string;
+  private headers = new Headers({'Content-Type': 'application/json'});
 
   constructor(private http: Http) {
     if (environment.production) {
@@ -16,6 +17,15 @@ export class DataService {
     } else {
       this.apiUrl = 'http://localhost:8000'
     }
+  }
+
+  authenticateUser(username: string, password: string) {
+    let data = {'username': username, 'password': password};
+    return this.http.post(
+      this.apiUrl + '/memoray-auth/', 
+      JSON.stringify(data), 
+      {headers: this.headers})
+    .toPromise()
   }
 
   getCards(): Promise<Card[]> {
