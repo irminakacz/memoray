@@ -14,17 +14,18 @@ export class AuthService {
   redirectUrl: string;
   token: string;
 
-  constructor(
-    private dataService: DataService,
-    private router: Router
-  ) { }
+  constructor(private dataService: DataService, private router: Router) { 
+    this.isLoggedIn = localStorage.getItem('isLoggedIn') ? true : false;
+  }
 
   login(username: string, password: string): Promise<boolean> {
     return this.dataService.authenticateUser(username, password)
     .then(response => {
       this.token = JSON.parse(response['_body']).token;
       if (this.token) {
+        localStorage.setItem('token', this.token);
         this.isLoggedIn = true;
+        localStorage.setItem('isLoggedIn', 'true');
       }
       return true;
     }).catch(() => this.isLoggedIn = false);
@@ -32,6 +33,7 @@ export class AuthService {
 
   logout(): void {
     this.isLoggedIn = false;
+    localStorage.removeItem('isLoggedIn');
     this.router.navigate(['/login']);
   }
 }

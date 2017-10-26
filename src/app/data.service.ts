@@ -9,7 +9,7 @@ import { Card } from './card';
 @Injectable()
 export class DataService {
   private apiUrl: string;
-  private headers = new Headers({'Content-Type': 'application/json'});
+  private headers: Headers;
 
   constructor(private http: Http) {
     if (environment.production) {
@@ -17,6 +17,11 @@ export class DataService {
     } else {
       this.apiUrl = 'http://localhost:8000'
     }
+
+    this.headers = new Headers({
+      'Content-Type': 'application/json',
+      'Authorization': 'JWT ' + localStorage.getItem('token')
+    });
   }
 
   authenticateUser(username: string, password: string) {
@@ -29,7 +34,7 @@ export class DataService {
   }
 
   getCards(): Promise<Card[]> {
-    return this.http.get(this.apiUrl + '/cards/')
+    return this.http.get(this.apiUrl + '/cards/', {headers: this.headers})
     .toPromise()
     .then(response => response.json() as Card[])
     .catch(this.handleError);
