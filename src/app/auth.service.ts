@@ -19,9 +19,7 @@ export class AuthService {
     private router: Router
   ) { }
 
-  login(): Promise<boolean> {
-    let username = "mina";
-    let password = "kOliberek6";
+  login(username: string, password: string): Promise<boolean> {
     return this.dataService.authenticateUser(username, password)
     .then(response => {
       this.token = JSON.parse(response['_body']).token;
@@ -29,7 +27,7 @@ export class AuthService {
         this.isLoggedIn = true;
       }
       return true;
-    });
+    }).catch(() => this.isLoggedIn = false);
   }
 
   logout(): void {
