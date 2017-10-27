@@ -5,6 +5,7 @@ import { environment } from '../environments/environment';
 import 'rxjs/add/operator/toPromise';
 
 import { Card } from './card';
+import { Deck } from './deck';
 
 @Injectable()
 export class DataService {
@@ -33,11 +34,24 @@ export class DataService {
     .toPromise()
   }
 
-  getCards(): Promise<Card[]> {
-    return this.http.get(this.apiUrl + '/cards/', {headers: this.headers})
+  // getCards(): Promise<Card[]> {
+  //   return this.http.get(this.apiUrl + '/cards/', {headers: this.headers})
+  //   .toPromise()
+  //   .then(response => response.json() as Card[])
+  //   .catch(this.handleError);
+  // }
+
+  getDecks(): Promise<Deck[]> {
+    return this.http.get(this.apiUrl + '/decks/', {headers: this.headers})
     .toPromise()
-    .then(response => response.json() as Card[])
+    .then(response => response.json() as Deck[])
     .catch(this.handleError);
+  }
+
+  getDeck(id: number): Promise<Deck> {
+    return this.http.get(this.apiUrl + `/decks/${id}/`, {headers: this.headers})
+      .toPromise()
+    .then(response => response.json() as Deck);
   }
 
   private handleError(error: any): Promise<any> {

@@ -7,6 +7,7 @@ import { AuthService } from './auth.service';
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu.component';
 import { DeckListComponent } from './deck-list.component';
+import { DeckComponent } from './deck.component';
 import { LoginComponent } from './login.component';
 
 const routes: Routes = [
@@ -19,7 +20,8 @@ const routes: Routes = [
       {
         path: '',
         children: [
-          { path: 'deck-list', component: DeckListComponent }
+          { path: 'deck-list', component: DeckListComponent },
+          { path: 'deck/:id', component: DeckComponent }
         ]
       }
     ]
