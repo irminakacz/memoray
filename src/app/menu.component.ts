@@ -6,12 +6,14 @@ import { Component } from '@angular/core';
     <div class="container">
       <ul class="nav nav-tabs">
         <li class="nav-item">
-          <a class="nav-link active" 
+          <a class="nav-link" 
             routerLink="/menu/deck-list"
             routerLinkActive="active">Decks</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/deck-list">Add</a>
+          <a class="nav-link" 
+            routerLink="/menu/add-card"
+            routerLinkActive="active">Add</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/deck-list">Browse</a>

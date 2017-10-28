@@ -10,6 +10,8 @@ import { DeckListComponent } from './deck-list.component';
 import { DeckComponent } from './deck.component';
 import { DataService } from './data.service';
 import { LoginComponent } from './login.component';
+import { ReviewComponent } from './review.component';
+import { AddCardComponent } from './add-card.component';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -19,7 +21,9 @@ import { AppRoutingModule } from './app-routing.module';
     MenuComponent,
     DeckListComponent,
     LoginComponent,
-    DeckComponent
+    DeckComponent,
+    ReviewComponent,
+    AddCardComponent
   ],
   imports: [
     BrowserModule,

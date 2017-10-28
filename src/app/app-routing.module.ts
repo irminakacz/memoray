@@ -9,6 +9,8 @@ import { MenuComponent } from './menu.component';
 import { DeckListComponent } from './deck-list.component';
 import { DeckComponent } from './deck.component';
 import { LoginComponent } from './login.component';
+import { ReviewComponent } from './review.component';
+import { AddCardComponent } from './add-card.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/menu/deck-list', pathMatch: 'full' },
@@ -21,7 +23,9 @@ const routes: Routes = [
         path: '',
         children: [
           { path: 'deck-list', component: DeckListComponent },
-          { path: 'deck/:id', component: DeckComponent }
+          { path: 'deck/:id', component: DeckComponent },
+          { path: 'review/:id', component: ReviewComponent },
+          { path: 'add-card', component: AddCardComponent }
         ]
       }
     ]

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
 
 @Component({
+  selector: 'login',
   template: `
     <div class="container" style="margin-top: 2em">
 

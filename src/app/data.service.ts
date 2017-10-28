@@ -31,7 +31,7 @@ export class DataService {
       this.apiUrl + '/memoray-auth/', 
       JSON.stringify(data), 
       {headers: this.headers})
-    .toPromise()
+      .toPromise()
   }
 
   // getCards(): Promise<Card[]> {
@@ -50,8 +50,35 @@ export class DataService {
 
   getDeck(id: number): Promise<Deck> {
     return this.http.get(this.apiUrl + `/decks/${id}/`, {headers: this.headers})
-      .toPromise()
+    .toPromise()
     .then(response => response.json() as Deck);
+  }
+
+  review(id: number, answerQuality: number): void {
+    let data = {
+      'card': id,
+      'answer_quality': answerQuality
+    }
+    this.http.post(this.apiUrl + `/reviews/`, 
+      JSON.stringify(data), {headers: this.headers})
+    .toPromise()
+    .then(response => console.log(response.json()));
+  }
+
+  getCard(id: number): Promise<Card> {
+    return this.http.get(this.apiUrl + `/cards/${id}/`, {headers: this.headers})
+    .toPromise()
+    .then(response => response.json() as Card);
+  }
+
+  createCard(card: Card): void {
+    let data = {
+      "deck": card.deck,
+      "front": card.front,
+      "back": card.back
+    }
+    this.http.post(this.apiUrl + `/cards/`, JSON.stringify(data), 
+      {headers:this.headers}).toPromise().then(response => console.log(response));
   }
 
   private handleError(error: any): Promise<any> {

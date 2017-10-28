@@ -16,7 +16,8 @@ import { DataService } from './data.service';
         <div *ngIf="dueCards">
           <div>Cards to study: {{dueCards}}
           <button class="btn btn-secondary btn-sm" 
-            style="margin-left: 1em">Review</button>
+            style="margin-left: 1em"
+            (click)="this.reviewDeck()">Review</button>
           </div>
         </div>
         <div *ngIf="!dueCards">
@@ -33,7 +34,8 @@ export class DeckComponent implements OnInit {
 
   constructor(
     private dataService: DataService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -52,5 +54,9 @@ export class DeckComponent implements OnInit {
 
   getDueCards(deck: Deck): number {
     return deck.cards.filter(card => card.is_due).length;
+  }
+
+  reviewDeck(): void {
+    this.router.navigate(['/menu/review', this.deck.id]);
   }
 }
