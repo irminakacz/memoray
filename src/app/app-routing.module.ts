@@ -12,6 +12,7 @@ import { LoginComponent } from './login.component';
 import { ReviewComponent } from './review.component';
 import { AddCardComponent } from './add-card.component';
 import { AddDeckComponent } from './add-deck.component';
+import { EditDeckComponent } from './edit-deck.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/menu/deck-list', pathMatch: 'full' },
@@ -27,7 +28,8 @@ const routes: Routes = [
           { path: 'deck/:id', component: DeckComponent },
           { path: 'review/:id', component: ReviewComponent },
           { path: 'add-card', component: AddCardComponent },
-          { path: 'add-deck', component: AddDeckComponent }
+          { path: 'add-deck', component: AddDeckComponent },
+          { path: 'edit-deck/:id', component: EditDeckComponent }
         ]
       }
     ]

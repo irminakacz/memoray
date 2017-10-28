@@ -95,6 +95,17 @@ export class DataService {
     .catch(this.handleError);
   }
 
+  editDeck(deck: Deck): Promise<Deck> {
+    let data = {
+      "name": deck.name
+    }
+    return this.http.patch(this.apiUrl + `/decks/${deck.id}/`,
+      JSON.stringify(data), {headers: this.headers})
+    .toPromise()
+    .then(response => response.json() as Deck)
+    .catch(this.handleError);
+  }
+
   private handleError(error: any): Promise<any> {
     console.log('An error occured', error);
     return Promise.reject(error.message || error);

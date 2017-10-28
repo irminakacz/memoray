@@ -28,7 +28,8 @@ import { DataService } from './data.service';
             <td (click)="this.goToDeck(deck.id)">{{deck.name}}</td>
             <td (click)="this.goToDeck(deck.id)">{{this.getDueCards(deck)}}</td>
             <td>
-              <button class="btn btn-secondary">
+              <button class="btn btn-secondary"
+                (click)="this.editDeck(deck.id)">
                 <i class="fa fa-pencil" aria-hidden="true"></i>
               </button>
               <button class="btn btn-secondary">
@@ -68,5 +69,9 @@ export class DeckListComponent implements OnInit {
 
   createDeck() {
     this.router.navigate(['/menu/add-deck']);
+  }
+
+  editDeck(id: number) {
+    this.router.navigate(['/menu/edit-deck', id]);
   }
 }
