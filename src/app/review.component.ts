@@ -13,7 +13,13 @@ import { DataService } from './data.service';
   template: `
     <div class="container" style="margin: 2em">
       <div *ngIf="deck">
-        <h2>{{deck.name}}</h2> 
+        <h2>{{deck.name}}
+        <button class="btn btn-secondary"
+          (click)="this.editCard(this.dueCards[this.currentCard].id)"
+          style="float: right">
+          <i class="fa fa-pencil" aria-hidden="true"></i>
+        </button>
+        </h2> 
 
         <div class="container" 
           style="text-align: center; 
@@ -106,6 +112,10 @@ export class ReviewComponent implements OnInit {
         200
       );
     }
+  }
+
+  editCard(id: number): void {
+    this.router.navigate(['/menu/edit-card/', id]);
   }
 
 }

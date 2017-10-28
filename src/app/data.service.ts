@@ -84,6 +84,19 @@ export class DataService {
     .catch(this.handleError);
   }
 
+  editCard(card: Card): Promise<Card> {
+    let data = {
+      "front": card.front,
+      "back": card.back,
+      "deck": card.deck
+    }
+    return this.http.patch(this.apiUrl + `/cards/${card.id}/`,
+      JSON.stringify(data), {headers: this.headers})
+    .toPromise()
+    .then(response => response.json() as Card)
+    .catch(this.handleError);
+  }
+
   createDeck(deck: Deck): void {
     let data = {
       "name": deck.name
