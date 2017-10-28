@@ -97,11 +97,14 @@ export class ReviewComponent implements OnInit {
       this.dataService.review(this.dueCards[this.currentCard].id, answerQuality);
     }
 
-    this.answerHidden = true;
     if (this.currentCard < this.dueCards.length-1) {
+      this.answerHidden = true;
       this.currentCard += 1;
     } else {
-      this.router.navigate(['/menu/deck', this.deck.id]);
+      setTimeout(
+        () => this.router.navigate(['/menu/deck', this.deck.id]),
+        200
+      );
     }
   }
 

@@ -12,6 +12,7 @@ import { DataService } from './data.service';
 import { LoginComponent } from './login.component';
 import { ReviewComponent } from './review.component';
 import { AddCardComponent } from './add-card.component';
+import { AddDeckComponent } from './add-deck.component';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -23,7 +24,8 @@ import { AppRoutingModule } from './app-routing.module';
     LoginComponent,
     DeckComponent,
     ReviewComponent,
-    AddCardComponent
+    AddCardComponent,
+    AddDeckComponent
   ],
   imports: [
     BrowserModule,

@@ -32,14 +32,11 @@ export class DataService {
       JSON.stringify(data), 
       {headers: this.headers})
       .toPromise()
+      .then()
+      .catch(this.handleError);
   }
 
-  // getCards(): Promise<Card[]> {
-  //   return this.http.get(this.apiUrl + '/cards/', {headers: this.headers})
-  //   .toPromise()
-  //   .then(response => response.json() as Card[])
-  //   .catch(this.handleError);
-  // }
+
 
   getDecks(): Promise<Deck[]> {
     return this.http.get(this.apiUrl + '/decks/', {headers: this.headers})
@@ -51,7 +48,8 @@ export class DataService {
   getDeck(id: number): Promise<Deck> {
     return this.http.get(this.apiUrl + `/decks/${id}/`, {headers: this.headers})
     .toPromise()
-    .then(response => response.json() as Deck);
+    .then(response => response.json() as Deck)
+    .catch(this.handleError);
   }
 
   review(id: number, answerQuality: number): void {
@@ -62,13 +60,15 @@ export class DataService {
     this.http.post(this.apiUrl + `/reviews/`, 
       JSON.stringify(data), {headers: this.headers})
     .toPromise()
-    .then(response => console.log(response.json()));
+    .then()
+    .catch(this.handleError);
   }
 
   getCard(id: number): Promise<Card> {
     return this.http.get(this.apiUrl + `/cards/${id}/`, {headers: this.headers})
     .toPromise()
-    .then(response => response.json() as Card);
+    .then(response => response.json() as Card)
+    .catch(this.handleError);
   }
 
   createCard(card: Card): void {
@@ -78,7 +78,21 @@ export class DataService {
       "back": card.back
     }
     this.http.post(this.apiUrl + `/cards/`, JSON.stringify(data), 
-      {headers:this.headers}).toPromise().then(response => console.log(response));
+      {headers:this.headers})
+    .toPromise()
+    .then()
+    .catch(this.handleError);
+  }
+
+  createDeck(deck: Deck): void {
+    let data = {
+      "name": deck.name
+    }
+    this.http.post(this.apiUrl + `/decks/`, JSON.stringify(data), 
+      {headers:this.headers})
+    .toPromise()
+    .then()
+    .catch(this.handleError);
   }
 
   private handleError(error: any): Promise<any> {

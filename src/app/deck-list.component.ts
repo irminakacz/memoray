@@ -8,7 +8,13 @@ import { DataService } from './data.service';
   selector: 'deck-list',
   template: `
     <div class="container col-sm-11" style="margin: 2em">
-      <h3>Decks</h3>
+      <h3>Decks
+      <button type="button" 
+        class="btn btn-secondary btn-sm"
+        (click)="createDeck()">
+        <i class="fa fa-plus" aria-hidden="true"></i>
+      </button>
+      </h3>
       <table class="table table-hover">
         <thead>
           <tr>
@@ -58,5 +64,9 @@ export class DeckListComponent implements OnInit {
 
   goToDeck(id: number) {
     this.router.navigate(['/menu/deck', id]);
+  }
+
+  createDeck() {
+    this.router.navigate(['/menu/add-deck']);
   }
 }
