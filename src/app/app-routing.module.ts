@@ -13,6 +13,7 @@ import { ReviewComponent } from './review.component';
 import { AddCardComponent } from './add-card.component';
 import { AddDeckComponent } from './add-deck.component';
 import { EditDeckComponent } from './edit-deck.component';
+import { DeleteDeckComponent } from './delete-deck.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/menu/deck-list', pathMatch: 'full' },
@@ -29,7 +30,8 @@ const routes: Routes = [
           { path: 'review/:id', component: ReviewComponent },
           { path: 'add-card', component: AddCardComponent },
           { path: 'add-deck', component: AddDeckComponent },
-          { path: 'edit-deck/:id', component: EditDeckComponent }
+          { path: 'edit-deck/:id', component: EditDeckComponent },
+          { path: 'delete-deck/:id', component: DeleteDeckComponent }
         ]
       }
     ]

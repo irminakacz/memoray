@@ -14,6 +14,7 @@ import { ReviewComponent } from './review.component';
 import { AddCardComponent } from './add-card.component';
 import { AddDeckComponent } from './add-deck.component';
 import { EditDeckComponent } from './edit-deck.component';
+import { DeleteDeckComponent } from './delete-deck.component';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -27,7 +28,8 @@ import { AppRoutingModule } from './app-routing.module';
     ReviewComponent,
     AddCardComponent,
     AddDeckComponent,
-    EditDeckComponent
+    EditDeckComponent,
+    DeleteDeckComponent
   ],
   imports: [
     BrowserModule,

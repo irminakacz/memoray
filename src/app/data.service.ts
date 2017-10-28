@@ -106,6 +106,14 @@ export class DataService {
     .catch(this.handleError);
   }
 
+  deleteDeck(deck: Deck): void {
+    this.http.delete(this.apiUrl + `/decks/${deck.id}/`,
+      {headers: this.headers})
+    .toPromise()
+    .then()
+    .catch(this.handleError);
+  }
+
   private handleError(error: any): Promise<any> {
     console.log('An error occured', error);
     return Promise.reject(error.message || error);

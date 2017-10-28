@@ -32,7 +32,8 @@ import { DataService } from './data.service';
                 (click)="this.editDeck(deck.id)">
                 <i class="fa fa-pencil" aria-hidden="true"></i>
               </button>
-              <button class="btn btn-secondary">
+              <button class="btn btn-secondary"
+                (click)="this.deleteDeck(deck.id)">
               <i class="fa fa-times" aria-hidden="true"></i>
               </button>
             </td>
@@ -73,5 +74,9 @@ export class DeckListComponent implements OnInit {
 
   editDeck(id: number) {
     this.router.navigate(['/menu/edit-deck', id]);
+  }
+
+  deleteDeck(id: number) {
+    this.router.navigate(['/menu/delete-deck', id]);
   }
 }
