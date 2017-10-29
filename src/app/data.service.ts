@@ -36,6 +36,20 @@ export class DataService {
       .catch(this.handleError);
   }
 
+  createUser(username: string, password: string): void {
+    let headers = new Headers({'Content-Type': 'application/json'});
+    let data = {
+      "username": username,
+      "password": password,
+      "decks": []
+    }
+    this.http.post(this.apiUrl + `/users/`, JSON.stringify(data),
+      {headers: headers})
+    .toPromise()
+    .then()
+    .catch(this.handleError);
+  }
+
   review(id: number, answerQuality: number): void {
     let data = {
       'card': id,

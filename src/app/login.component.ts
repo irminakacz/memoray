@@ -50,7 +50,8 @@ import { AuthService } from './auth.service';
                 class="btn btn-dark"
                 (click)="login()">Login</button>
               <button type="button"
-                class="btn btn-link">Sign in</button>
+                (click)="createUser()"
+                class="btn btn-link">Sign up</button>
             </div>
           </div>
         </div>
@@ -79,7 +80,9 @@ export class LoginComponent {
         if (this.authService.isLoggedIn) {
           let redirect = this.authService.redirectUrl 
             ? this.authService.redirectUrl : '/menu/deck-list';
-          this.router.navigate([redirect]);
+          setTimeout(
+            () => this.router.navigate([redirect]),
+            500);
         } else {
           this.errorMessage = "Incorrect username or password.";
         }
@@ -91,5 +94,9 @@ export class LoginComponent {
 
   logout() {
     this.authService.logout();
+  }
+
+  createUser(): void {
+    this.router.navigate(['/add-user']);
   }
 }
