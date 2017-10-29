@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 import { DataService } from './data.service';
 
@@ -94,7 +95,8 @@ export class EditCardComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private dataService: DataService
+    private dataService: DataService,
+    private location: Location
   ) { }
 
   ngOnInit(): void {
@@ -126,6 +128,6 @@ export class EditCardComponent implements OnInit {
   }
 
   goBack(): void {
-    this.router.navigate(['/menu/review', this.card.deck]);
+    this.location.back();
   }
 }

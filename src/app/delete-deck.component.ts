@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
+import { Location } from '@angular/common';
 
 import 'rxjs/add/operator/switchMap';
 
@@ -59,7 +60,8 @@ export class DeleteDeckComponent implements OnInit {
   constructor(
     private dataService: DataService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private location: Location
   ) { }
 
   ngOnInit(): void {
@@ -76,11 +78,11 @@ export class DeleteDeckComponent implements OnInit {
   deleteDeck(): void {
     this.dataService.deleteDeck(this.deck);
     setTimeout(
-      () => this.router.navigate(['/menu/deck-list']),
+      () => this.location.back(),
       200);
   }
 
   goBack(): void {
-    this.router.navigate(['/menu/deck-list']);
+    this.location.back();
   }
 }

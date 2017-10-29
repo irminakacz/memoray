@@ -7,7 +7,7 @@ import { DataService } from './data.service';
 @Component({
   selector: 'deck-list',
   template: `
-    <div class="container" style="padding: 2em">
+    <div class="container" style="margin: 2em">
       <h3>Decks
       <button type="button" 
         class="btn btn-secondary btn-sm"

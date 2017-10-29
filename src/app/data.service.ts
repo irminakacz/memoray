@@ -36,22 +36,6 @@ export class DataService {
       .catch(this.handleError);
   }
 
-
-
-  getDecks(): Promise<Deck[]> {
-    return this.http.get(this.apiUrl + '/decks/', {headers: this.headers})
-    .toPromise()
-    .then(response => response.json() as Deck[])
-    .catch(this.handleError);
-  }
-
-  getDeck(id: number): Promise<Deck> {
-    return this.http.get(this.apiUrl + `/decks/${id}/`, {headers: this.headers})
-    .toPromise()
-    .then(response => response.json() as Deck)
-    .catch(this.handleError);
-  }
-
   review(id: number, answerQuality: number): void {
     let data = {
       'card': id,
@@ -69,6 +53,13 @@ export class DataService {
     .toPromise()
     .then(response => response.json() as Card)
     .catch(this.handleError);
+  }
+
+  getCards(): Promise<Card[]> {
+    return this.http.get(this.apiUrl + `/cards/`, {headers: this.headers})
+    .toPromise()
+    .then(response => response.json() as Card[])
+    .catch(this.handleError)
   }
 
   createCard(card: Card): void {
@@ -101,6 +92,20 @@ export class DataService {
     this.http.delete(this.apiUrl + `/cards/${card.id}/`, {headers: this.headers})
     .toPromise()
     .then()
+    .catch(this.handleError);
+  }
+
+  getDeck(id: number): Promise<Deck> {
+    return this.http.get(this.apiUrl + `/decks/${id}/`, {headers: this.headers})
+    .toPromise()
+    .then(response => response.json() as Deck)
+    .catch(this.handleError);
+  }
+
+  getDecks(): Promise<Deck[]> {
+    return this.http.get(this.apiUrl + '/decks/', {headers: this.headers})
+    .toPromise()
+    .then(response => response.json() as Deck[])
     .catch(this.handleError);
   }
 

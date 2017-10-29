@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 import { DataService } from './data.service';
 
@@ -11,7 +12,7 @@ import { Deck } from './deck';
   template: `
     <div class="container" style="padding: 2em">
 
-      <div class="row" *ngIf="card">
+      <div class="row" *ngIf="card && decks">
 
         <div class="col-1">
         </div>
@@ -27,7 +28,7 @@ import { Deck } from './deck';
               <input type="text" 
                 class="form-control" 
                 id="deck"
-                [(ngModel)]="card.deck"
+                value="{{this.getDeckName()}}"
                 disabled>
             </div>
           </div>
@@ -89,7 +90,8 @@ export class DeleteCardComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private dataService: DataService
+    private dataService: DataService,
+    private location: Location
   ) { }
 
   ngOnInit(): void {
@@ -112,11 +114,15 @@ export class DeleteCardComponent implements OnInit {
   deleteCard(): void {
     this.dataService.deleteCard(this.card);
     setTimeout(
-      () => this.router.navigate(['/menu/review', this.card.deck]),
+      () => this.location.back(),
       200);
   }
 
+  getDeckName() {
+    return this.decks.find(deck => deck.id === this.card.deck).name;
+  }
+
   goBack(): void {
-    this.router.navigate(['/menu/review', this.card.deck]);
+    this.location.back();
   }
 }
