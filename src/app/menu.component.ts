@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'menu',
+  selector: 'main-menu',
   template: `
-    <div class="container">
+    <div class="container" style="padding: 1em">
       <ul class="nav nav-tabs">
         <li class="nav-item">
           <a class="nav-link" 

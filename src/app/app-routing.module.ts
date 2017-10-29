@@ -15,6 +15,7 @@ import { AddDeckComponent } from './add-deck.component';
 import { EditDeckComponent } from './edit-deck.component';
 import { DeleteDeckComponent } from './delete-deck.component';
 import { EditCardComponent } from './edit-card.component';
+import { DeleteCardComponent } from './delete-card.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/menu/deck-list', pathMatch: 'full' },
@@ -33,7 +34,8 @@ const routes: Routes = [
           { path: 'add-deck', component: AddDeckComponent },
           { path: 'edit-deck/:id', component: EditDeckComponent },
           { path: 'delete-deck/:id', component: DeleteDeckComponent },
-          { path: 'edit-card/:id', component: EditCardComponent }
+          { path: 'edit-card/:id', component: EditCardComponent },
+          { path: 'delete-card/:id', component: DeleteCardComponent }
         ]
       }
     ]

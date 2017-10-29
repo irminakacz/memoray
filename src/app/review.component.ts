@@ -11,14 +11,20 @@ import { DataService } from './data.service';
 @Component({
   selector: 'review',
   template: `
-    <div class="container" style="margin: 2em">
+    <div class="container" style="padding: 2em">
       <div *ngIf="deck">
         <h2>{{deck.name}}
-        <button class="btn btn-secondary"
-          (click)="this.editCard(this.dueCards[this.currentCard].id)"
-          style="float: right">
-          <i class="fa fa-pencil" aria-hidden="true"></i>
-        </button>
+
+        <div style="float: right">
+          <button class="btn btn-secondary"
+            (click)="this.editCard(this.dueCards[this.currentCard].id)">
+            <i class="fa fa-pencil" aria-hidden="true"></i>
+          </button>
+          <button class="btn btn-secondary"
+            (click)="this.deleteCard(this.dueCards[this.currentCard].id)">
+            <i class="fa fa-times" aria-hidden="true"></i>
+          </button>
+        </div>
         </h2> 
 
         <div class="container" 
@@ -84,6 +90,9 @@ export class ReviewComponent implements OnInit {
     .subscribe(deck => {
       this.deck = deck
       this.dueCards = this.getDueCards(deck);
+      if (this.dueCards.length === 0) {
+        this.router.navigate(['/menu/deck/', this.deck.id]);
+      }
     });
   }
 
@@ -116,6 +125,10 @@ export class ReviewComponent implements OnInit {
 
   editCard(id: number): void {
     this.router.navigate(['/menu/edit-card/', id]);
+  }
+
+  deleteCard(id: number): void {
+    this.router.navigate(['/menu/delete-card/', id]);
   }
 
 }

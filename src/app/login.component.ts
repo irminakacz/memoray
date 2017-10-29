@@ -5,7 +5,7 @@ import { AuthService } from './auth.service';
 @Component({
   selector: 'login',
   template: `
-    <div class="container" style="margin-top: 2em">
+    <div class="container" style="padding: 2em">
 
       <div class="row">
 

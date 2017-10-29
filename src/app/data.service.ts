@@ -97,6 +97,13 @@ export class DataService {
     .catch(this.handleError);
   }
 
+  deleteCard(card: Card): void {
+    this.http.delete(this.apiUrl + `/cards/${card.id}/`, {headers: this.headers})
+    .toPromise()
+    .then()
+    .catch(this.handleError);
+  }
+
   createDeck(deck: Deck): void {
     let data = {
       "name": deck.name

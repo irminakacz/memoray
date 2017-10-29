@@ -17,25 +17,18 @@ import { Deck } from './deck';
         </div>
 
         <div class="col-10">
-          <h2>Edit card</h2>
-
-          <div *ngIf="errorMessage"
-            class="alert alert-danger" 
-            role="alert">{{errorMessage}}</div>
-
-          <div *ngIf="successMessage"
-            class="alert alert-success" 
-            role="alert">{{successMessage}}</div>
+          <h2>Delete card</h2>
 
           <div class="form-group row">
             <label for="front" class="col-sm-2 col-form-label">
               Deck
             </label>
             <div class="col-sm-10">
-              <select class="form-control" [(ngModel)]="card.deck">
-                <option *ngFor="let deck of decks"
-                  [value]="deck.id">{{deck.name}}</option>
-              </select>
+              <input type="text" 
+                class="form-control" 
+                id="deck"
+                [(ngModel)]="card.deck"
+                disabled>
             </div>
           </div>
 
@@ -47,7 +40,8 @@ import { Deck } from './deck';
               <input type="text" 
                 class="form-control" 
                 id="front"
-                [(ngModel)]="card.front">
+                [(ngModel)]="card.front"
+                disabled>
             </div>
           </div>
 
@@ -59,7 +53,8 @@ import { Deck } from './deck';
               <input type="text" 
                 class="form-control" 
                 id="back"
-                [(ngModel)]="card.back">
+                [(ngModel)]="card.back"
+                disabled>
             </div>
           </div>
 
@@ -68,7 +63,7 @@ import { Deck } from './deck';
             <div class="col-sm-10">
               <button type="button" 
                 class="btn btn-dark"
-                (click)="createCard()">Edit</button>
+                (click)="deleteCard()">Delete</button>
               <button type="button"
                 class="btn btn-light"
                 (click)="goBack()">Cancel</button>
@@ -84,7 +79,7 @@ import { Deck } from './deck';
   `
 })
 
-export class EditCardComponent implements OnInit {
+export class DeleteCardComponent implements OnInit {
   errorMessage: string;
   successMessage: string;
 
@@ -114,15 +109,11 @@ export class EditCardComponent implements OnInit {
     .then(decks => this.decks = decks);
   }
 
-  createCard(): void {
-    this.errorMessage = null;
-    this.successMessage = null;
-    if (this.card.deck && this.card.front && this.card.back) {
-      this.dataService.editCard(this.card);
-      this.successMessage = "Card edited successfuly."
-    } else {
-      this.errorMessage = "Fields cannot be left empty.";
-    }
+  deleteCard(): void {
+    this.dataService.deleteCard(this.card);
+    setTimeout(
+      () => this.router.navigate(['/menu/review', this.card.deck]),
+      200);
   }
 
   goBack(): void {

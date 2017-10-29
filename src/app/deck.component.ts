@@ -10,7 +10,7 @@ import { DataService } from './data.service';
 @Component({
   selector: 'deck',
   template: `
-    <div class="container" style="margin: 2em">
+    <div class="container" style="padding: 2em">
       <div *ngIf="deck">
         <h2>{{deck.name}}</h2> 
         <div *ngIf="dueCards">
