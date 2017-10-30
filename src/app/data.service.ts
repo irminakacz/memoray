@@ -70,6 +70,13 @@ export class DataService {
     .catch(this.handleError);
   }
 
+  deleteUser(id: number): void {
+    this.http.delete(this.apiUrl + `/users/${id}/`, {headers: this.headers})
+    .toPromise()
+    .then()
+    .catch(this.handleError);
+  }
+
   review(id: number, answerQuality: number): void {
     let data = {
       'card': id,

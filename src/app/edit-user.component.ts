@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { DataService } from './data.service';
+import { AuthService } from './auth.service';
 
 import { Card } from './card';
 import { Deck } from './deck';
@@ -72,6 +73,9 @@ import { User } from './user';
                 class="btn btn-dark"
                 (click)="editUser()">Save</button>
               <button type="button"
+                class="btn btn-danger"
+                (click)="deleteUser()">Delete</button>
+              <button type="button"
                 class="btn btn-secondary"
                 (click)="goBack()">Cancel</button>
             </div>
@@ -98,7 +102,8 @@ export class EditUserComponent implements OnInit {
   constructor(
     private router: Router,
     private dataService: DataService,
-    private location: Location
+    private location: Location,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -128,6 +133,14 @@ export class EditUserComponent implements OnInit {
       }
     } else {
       this.errorMessage = "Fields cannot be empty.";
+    }
+  }
+
+  deleteUser(): void {
+    let isUserSure = confirm("Are you sure you want to delete your account?\n(You will lost all decks and cards in the process)");
+    if (isUserSure) {
+      this.dataService.deleteUser(this.user.id);
+      this.authService.logout();
     }
   }
 
