@@ -20,6 +20,7 @@ import { DeleteCardComponent } from './delete-card.component';
 import { BrowseComponent } from './browse.component';
 import { AddUserComponent } from './add-user.component';
 import { EditUserComponent } from './edit-user.component';
+import { StatsComponent } from './stats.component';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -39,7 +40,8 @@ import { AppRoutingModule } from './app-routing.module';
     DeleteCardComponent,
     BrowseComponent,
     AddUserComponent,
-    EditUserComponent
+    EditUserComponent,
+    StatsComponent
   ],
   imports: [
     BrowserModule,

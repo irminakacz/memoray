@@ -7,6 +7,7 @@ import 'rxjs/add/operator/toPromise';
 import { Card } from './card';
 import { Deck } from './deck';
 import { User } from './user';
+import { Review } from './review';
 
 @Injectable()
 export class DataService {
@@ -177,6 +178,13 @@ export class DataService {
       {headers: this.headers})
     .toPromise()
     .then()
+    .catch(this.handleError);
+  }
+
+  getReviews(): Promise<Review[]> {
+    return this.http.get(this.apiUrl + `/reviews/`, {headers: this.headers})
+    .toPromise()
+    .then(response => response.json() as Review[])
     .catch(this.handleError);
   }
 

@@ -19,6 +19,7 @@ import { DeleteCardComponent } from './delete-card.component';
 import { BrowseComponent } from './browse.component';
 import { AddUserComponent } from './add-user.component';
 import { EditUserComponent } from './edit-user.component';
+import { StatsComponent } from './stats.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/menu/deck-list', pathMatch: 'full' },
@@ -40,7 +41,8 @@ const routes: Routes = [
           { path: 'edit-card/:id', component: EditCardComponent },
           { path: 'delete-card/:id', component: DeleteCardComponent },
           { path: 'browse', component: BrowseComponent },
-          { path: 'edit-user', component: EditUserComponent }
+          { path: 'edit-user', component: EditUserComponent },
+          { path: 'stats', component: StatsComponent }
         ]
       }
     ]

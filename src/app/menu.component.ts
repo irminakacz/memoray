@@ -21,7 +21,9 @@ import { Component } from '@angular/core';
             routerLinkActive="active">Browse</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/deck-list">Statistic</a>
+          <a class="nav-link" 
+            routerLink="/menu/stats"
+            routerLinkActive="active">Statistic</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" 
