@@ -22,6 +22,8 @@ import { AddUserComponent } from './add-user.component';
 import { EditUserComponent } from './edit-user.component';
 import { StatsComponent } from './stats.component';
 
+import { ChartsModule } from 'ng2-charts/ng2-charts';
+
 import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
@@ -47,7 +49,8 @@ import { AppRoutingModule } from './app-routing.module';
     BrowserModule,
     HttpModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ChartsModule
   ],
   providers: [
     DataService
