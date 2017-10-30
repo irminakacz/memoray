@@ -26,6 +26,7 @@ export class AuthService {
         localStorage.setItem('token', this.token);
         this.isLoggedIn = true;
         localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('username', username);
       }
       return true;
     }).catch(() => this.isLoggedIn = false);
@@ -35,6 +36,7 @@ export class AuthService {
     this.isLoggedIn = false;
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('token');
+    localStorage.removeItem('username');
     this.router.navigate(['/login']);
   }
 }

@@ -24,7 +24,9 @@ import { Component } from '@angular/core';
           <a class="nav-link" routerLink="/deck-list">Statistic</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/deck-list">Settings</a>
+          <a class="nav-link" 
+            routerLink="/menu/edit-user"
+            routerLinkActive="active">Settings</a>
         </li>
       </ul>
       <router-outlet></router-outlet>

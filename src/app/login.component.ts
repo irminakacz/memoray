@@ -80,9 +80,7 @@ export class LoginComponent {
         if (this.authService.isLoggedIn) {
           let redirect = this.authService.redirectUrl 
             ? this.authService.redirectUrl : '/menu/deck-list';
-          setTimeout(
-            () => this.router.navigate([redirect]),
-            500);
+            this.router.navigate([redirect]);
         } else {
           this.errorMessage = "Incorrect username or password.";
         }

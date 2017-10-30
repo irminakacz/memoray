@@ -6,6 +6,7 @@ import 'rxjs/add/operator/toPromise';
 
 import { Card } from './card';
 import { Deck } from './deck';
+import { User } from './user';
 
 @Injectable()
 export class DataService {
@@ -36,6 +37,13 @@ export class DataService {
       .catch(this.handleError);
   }
 
+  getUser(): Promise<User> {
+    return this.http.get(this.apiUrl + '/users/', {headers: this.headers})
+      .toPromise()
+      .then(response => response.json()[0] as User)
+      .catch(this.handleError)
+  }
+
   createUser(username: string, password: string): void {
     let headers = new Headers({'Content-Type': 'application/json'});
     let data = {
@@ -45,6 +53,18 @@ export class DataService {
     }
     this.http.post(this.apiUrl + `/users/`, JSON.stringify(data),
       {headers: headers})
+    .toPromise()
+    .then()
+    .catch(this.handleError);
+  }
+
+  editUser(id: number, username: string, password: string): void {
+    let data = {
+      "username": username,
+      "password": password,
+    }
+    this.http.patch(this.apiUrl + `/users/${id}/`, JSON.stringify(data),
+      {headers: this.headers})
     .toPromise()
     .then()
     .catch(this.handleError);
