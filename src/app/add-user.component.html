@@ -7,10 +7,12 @@
       <h2>Create account</h2>
 
       <div *ngIf="errorMessage"
+         id="create-user-error-message"
          class="alert alert-danger" 
          role="alert">{{errorMessage}}</div>
 
       <div *ngIf="successMessage"
+         id="create-user-success-message"
          class="alert alert-success" 
          role="alert">{{successMessage}}</div>
 
@@ -58,9 +60,11 @@
           <div class="col-sm-2"></div>
           <div class="col-sm-10">
             <button type="submit"
+                    id="create-user-btn"
                     class="btn btn-dark"
                     (click)="createUser()">Create</button>
             <button class="btn btn-link"
+                    id="create-user-goback-btn"
                     (click)="goBack()">Login</button>
           </div>
         </div>
