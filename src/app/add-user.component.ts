@@ -28,8 +28,9 @@ export class AddUserComponent {
     if (this.username && this.password && this.repeatedPassword) {
       if (this.password.length >= 6) {
         if (this.password === this.repeatedPassword) {
-          this.dataService.createUser(this.username, this.password);
-          this.successMessage = "Account created successfuly.";
+          this.dataService.createUser(this.username, this.password)
+            .then(() => this.successMessage = "Account created successfuly.")
+            .catch(() => this.errorMessage = "This user already exist.")
         } else {
           this.errorMessage = "Passwords don't match.";
         }

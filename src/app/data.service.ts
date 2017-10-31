@@ -45,29 +45,28 @@ export class DataService {
       .catch(this.handleError)
   }
 
-  createUser(username: string, password: string): void {
+  createUser(username: string, password: string): Promise<boolean> {
     let headers = new Headers({'Content-Type': 'application/json'});
     let data = {
       "username": username,
       "password": password,
       "decks": []
     }
-    this.http.post(this.apiUrl + `/users/`, JSON.stringify(data),
+    return this.http.post(this.apiUrl + `/users/`, JSON.stringify(data),
       {headers: headers})
     .toPromise()
     .then()
     .catch(this.handleError);
   }
 
-  editUser(id: number, username: string, password: string): void {
+  editUser(id: number, password: string): Promise<User> {
     let data = {
-      "username": username,
-      "password": password,
+      "password": password
     }
-    this.http.patch(this.apiUrl + `/users/${id}/`, JSON.stringify(data),
+    return this.http.patch(this.apiUrl + `/users/${id}/`, JSON.stringify(data),
       {headers: this.headers})
     .toPromise()
-    .then()
+    .then(response => response.json() as User)
     .catch(this.handleError);
   }
 
@@ -78,7 +77,7 @@ export class DataService {
     .catch(this.handleError);
   }
 
-  review(id: number, answerQuality: number): void {
+  review(id: number, answerQuality: number) {
     let data = {
       'card': id,
       'answer_quality': answerQuality
@@ -104,16 +103,16 @@ export class DataService {
     .catch(this.handleError)
   }
 
-  createCard(card: Card): void {
+  createCard(card: Card): Promise<Card> {
     let data = {
       "deck": card.deck,
       "front": card.front,
       "back": card.back
     }
-    this.http.post(this.apiUrl + `/cards/`, JSON.stringify(data), 
+    return this.http.post(this.apiUrl + `/cards/`, JSON.stringify(data), 
       {headers:this.headers})
     .toPromise()
-    .then()
+    .then(response => response.json() as Card)
     .catch(this.handleError);
   }
 

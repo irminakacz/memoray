@@ -14,7 +14,7 @@
          class="alert alert-success" 
          role="alert">{{successMessage}}</div>
 
-      <form>
+      <form *ngIf="user">
         <div class="form-group row">
           <label for="front" class="col-sm-2 col-form-label">
             Username
@@ -24,7 +24,8 @@
                    class="form-control" 
                    id="username"
                    name="username"
-                   [(ngModel)]="username">
+                   [(ngModel)]="user.username"
+                   disabled>
           </div>
         </div>
 
@@ -60,11 +61,9 @@
             <button type="submit"
                     class="btn btn-dark"
                     (click)="editUser()">Save</button>
-            <button type="button"
-                    class="btn btn-danger"
+            <button class="btn btn-danger"
                     (click)="deleteUser()">Delete</button>
-            <button type="button"
-                    class="btn btn-secondary"
+            <button class="btn btn-secondary"
                     (click)="goBack()">Cancel</button>
           </div>
         </div>

@@ -19,7 +19,6 @@ export class EditUserComponent implements OnInit {
   successMessage: string;
 
   user: User;
-  username: string;
   password: string;
   repeatedPassword: string;
 
@@ -38,25 +37,24 @@ export class EditUserComponent implements OnInit {
     this.dataService.getUser()
     .then(user => {
       this.user = user;
-      this.username = user.username;
     });
   }
 
   editUser(): void {
-    if (this.username && this.password && this.repeatedPassword) {
-      if (this.password.length >= 6) {
-        if (this.password === this.repeatedPassword) {
+    this.successMessage = "";
+    this.errorMessage = "";
+    if (this.password) {
+      if (this.password === this.repeatedPassword) {
+        if (this.password.length >= 6) {
           this.dataService.editUser(
-            this.user.id, this.username, this.password);
+            this.user.id, this.password);
           this.successMessage = "Account edited successfuly.";
         } else {
-          this.errorMessage = "Passwords don't match.";
+          this.errorMessage = "Password too short.";
         }
       } else {
-        this.errorMessage = "Password too short.";
+        this.errorMessage = "Passwords don't match.";
       }
-    } else {
-      this.errorMessage = "Fields cannot be empty.";
     }
   }
 
