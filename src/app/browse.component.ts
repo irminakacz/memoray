@@ -15,46 +15,7 @@ import { DataService } from './data.service';
 
 @Component({
   selector: 'browse',
-  template: `
-    <div class="container" style="padding: 2em">
-      <h3>Browse cards</h3>
-
-      <input id="search-box" 
-        class="form-control"
-        [(ngModel)]="searchPhrase"
-        (keyup)="search()"
-        placeholder="Search..."
-        style="width: 100%">
-
-      <table class="table table-hover" *ngIf="cards && decks">
-        <thead>
-          <tr>
-            <th scope="col">Front</th>
-            <th scope="col">Back</th>
-            <th scope="col">Deck</th>
-            <th scope="col">Options</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let card of searchResult">
-            <td>{{card.front}}</td>
-            <td>{{card.back}}</td>
-            <td>{{this.getDeckName(card.deck)}}</td>
-            <td>
-              <button class="btn btn-secondary"
-                (click)="this.editCard(card.id)">
-                <i class="fa fa-pencil" aria-hidden="true"></i>
-              </button>
-              <button class="btn btn-secondary"
-                (click)="this.deleteCard(card.id)">
-              <i class="fa fa-times" aria-hidden="true"></i>
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  `,
+  templateUrl: './browse.component.html'
 })
 
 export class BrowseComponent implements OnInit {

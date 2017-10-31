@@ -9,80 +9,7 @@ import { Deck } from './deck';
 
 @Component({
   selector: 'edit-card',
-  template: `
-    <div class="container" style="padding: 2em">
-
-      <div class="row" *ngIf="card">
-
-        <div class="col-1">
-        </div>
-
-        <div class="col-10">
-          <h2>Edit card</h2>
-
-          <div *ngIf="errorMessage"
-            class="alert alert-danger" 
-            role="alert">{{errorMessage}}</div>
-
-          <div *ngIf="successMessage"
-            class="alert alert-success" 
-            role="alert">{{successMessage}}</div>
-
-          <div class="form-group row">
-            <label for="front" class="col-sm-2 col-form-label">
-              Deck
-            </label>
-            <div class="col-sm-10">
-              <select class="form-control" [(ngModel)]="card.deck">
-                <option *ngFor="let deck of decks"
-                  [value]="deck.id">{{deck.name}}</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <label for="front" class="col-sm-2 col-form-label">
-              Front
-            </label>
-            <div class="col-sm-10">
-              <input type="text" 
-                class="form-control" 
-                id="front"
-                [(ngModel)]="card.front">
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <label for="back" class="col-sm-2 col-form-label">
-              Back
-            </label>
-            <div class="col-sm-10">
-              <input type="text" 
-                class="form-control" 
-                id="back"
-                [(ngModel)]="card.back">
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <div class="col-sm-2"></div>
-            <div class="col-sm-10">
-              <button type="button" 
-                class="btn btn-dark"
-                (click)="createCard()">Edit</button>
-              <button type="button"
-                class="btn btn-light"
-                (click)="goBack()">Cancel</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-1">
-        </div>
-
-      </div>
-    </div>
-  `
+  templateUrl: './edit-card.component.html'
 })
 
 export class EditCardComponent implements OnInit {
@@ -116,7 +43,7 @@ export class EditCardComponent implements OnInit {
     .then(decks => this.decks = decks);
   }
 
-  createCard(): void {
+  editCard(): void {
     this.errorMessage = null;
     this.successMessage = null;
     if (this.card.deck && this.card.front && this.card.back) {

@@ -10,59 +10,7 @@ import { DataService } from './data.service';
 
 @Component({
   selector: 'review',
-  template: `
-    <div class="container" style="padding: 2em">
-      <div *ngIf="deck">
-        <h2>{{deck.name}}
-
-        <div style="float: right">
-          <button class="btn btn-secondary"
-            (click)="this.editCard(this.dueCards[this.currentCard].id)">
-            <i class="fa fa-pencil" aria-hidden="true"></i>
-          </button>
-          <button class="btn btn-secondary"
-            (click)="this.deleteCard(this.dueCards[this.currentCard].id)">
-            <i class="fa fa-times" aria-hidden="true"></i>
-          </button>
-        </div>
-        </h2> 
-
-        <div class="container" 
-          style="text-align: center; 
-          border: solid 2px black;
-          border-radius: 10px;
-          padding: 2em">
-
-          <h4>{{dueCards[currentCard].front}}</h4>
-
-          <button class="btn btn-primary" 
-            *ngIf="answerHidden; else answerVisible"
-            (click)="showAnswer()">Show answer</button>
-
-          <ng-template #answerVisible>
-            <hr>
-            <h4>{{dueCards[currentCard].back}}</h4>
-            <div class="btn-group">
-              <button class="btn btn-danger"
-              (click)="this.review(0)">0</button>
-              <button class="btn btn-warning"
-              (click)="this.review(1)">1</button>
-              <button class="btn btn-secondary"
-              (click)="this.review(2)">2</button>
-              <button class="btn btn-success"
-              (click)="this.review(3)">3</button>
-              <button class="btn btn-info"
-              (click)="this.review(4)">4</button>
-              <button class="btn btn-primary"
-              (click)="this.review(5)">5</button>
-            </div>
-          </ng-template>
-
-        </div>
-
-      </div>
-    </div>
-  `,
+  templateUrl: './review.component.html'
 })
 
 export class ReviewComponent implements OnInit {

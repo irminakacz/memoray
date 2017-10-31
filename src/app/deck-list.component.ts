@@ -6,42 +6,7 @@ import { DataService } from './data.service';
 
 @Component({
   selector: 'deck-list',
-  template: `
-    <div class="container" style="margin: 2em">
-      <h3>Decks
-      <button type="button" 
-        class="btn btn-secondary btn-sm"
-        (click)="createDeck()">
-        <i class="fa fa-plus" aria-hidden="true"></i>
-      </button>
-      </h3>
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th scope="col">Deck name</th>
-            <th scope="col">Due cards</th>
-            <th scope="col">Options</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let deck of decks">
-            <td (click)="this.goToDeck(deck.id)">{{deck.name}}</td>
-            <td (click)="this.goToDeck(deck.id)">{{this.getDueCards(deck)}}</td>
-            <td>
-              <button class="btn btn-secondary"
-                (click)="this.editDeck(deck.id)">
-                <i class="fa fa-pencil" aria-hidden="true"></i>
-              </button>
-              <button class="btn btn-secondary"
-                (click)="this.deleteDeck(deck.id)">
-              <i class="fa fa-times" aria-hidden="true"></i>
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  `,
+  templateUrl: './deck-list.component.html'
 })
 
 export class DeckListComponent implements OnInit {

@@ -11,54 +11,7 @@ import * as moment from 'moment';
 
 @Component({
   selector: 'stats',
-  template: `
-    <div class="container" style="padding: 2em">
-      <div *ngIf="reviews && cards && decks">
-        <h2>Statistics</h2> 
-        <div style="padding: 2em">
-          <h5>
-          Number of cards in all decks: {{cards.length}}
-          </h5>
-          <h5>
-          Overall number of reviews: {{reviews.length}}
-          </h5>
-        </div>
-
-        <div style="padding: 2em">
-          <h4 style="text-align:center">Cards per deck</h4>
-          <canvas baseChart
-            [datasets]="cardsPerDeckChartData"
-            [labels]="cardsPerDeckChartLabels"
-            [options]="cardsPerDeckChartOptions"
-            [colors]="cardsPerDeckChartColors"
-            [legend]="cardsPerDeckChartLegend"
-            [chartType]="cardsPerDeckChartType"></canvas>
-        </div>
-
-        <div style="padding: 2em">
-          <h4 style="text-align:center">Answers by quality</h4>
-          <canvas baseChart
-            [datasets]="answersByQualityChartData"
-            [labels]="answersByQualityChartLabels"
-            [options]="answersByQualityChartOptions"
-            [colors]="answersByQualityChartColors"
-            [legend]="answersByQualityChartLegend"
-            [chartType]="answersByQualityChartType"></canvas>
-        </div>
-
-        <div style="padding: 2em">
-          <h4 style="text-align:center">Reviews this week</h4>
-          <canvas baseChart
-            [datasets]="reviewsThisWeekChartData"
-            [labels]="reviewsThisWeekChartLabels"
-            [options]="reviewsThisWeekChartOptions"
-            [colors]="reviewsThisWeekChartColors"
-            [legend]="reviewsThisWeekChartLegend"
-            [chartType]="reviewsThisWeekChartType"></canvas>
-        </div>
-      </div>
-    </div>
-  `,
+  templateUrl: './stats.component.html'
 })
 
 export class StatsComponent implements OnInit {
@@ -122,7 +75,9 @@ export class StatsComponent implements OnInit {
   }
 
   numberOfAnswersWithQuality(quality: number) {
-    return this.reviews.filter(review => review.answer_quality === quality).length
+    return this.reviews.filter(review => {
+      return review.answer_quality === quality;
+    }).length
   }
 
   createAnswersByQualityChart(): void {

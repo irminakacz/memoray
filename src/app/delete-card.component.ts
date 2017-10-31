@@ -9,75 +9,7 @@ import { Deck } from './deck';
 
 @Component({
   selector: 'edit-card',
-  template: `
-    <div class="container" style="padding: 2em">
-
-      <div class="row" *ngIf="card && decks">
-
-        <div class="col-1">
-        </div>
-
-        <div class="col-10">
-          <h2>Delete card</h2>
-
-          <div class="form-group row">
-            <label for="front" class="col-sm-2 col-form-label">
-              Deck
-            </label>
-            <div class="col-sm-10">
-              <input type="text" 
-                class="form-control" 
-                id="deck"
-                value="{{this.getDeckName()}}"
-                disabled>
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <label for="front" class="col-sm-2 col-form-label">
-              Front
-            </label>
-            <div class="col-sm-10">
-              <input type="text" 
-                class="form-control" 
-                id="front"
-                [(ngModel)]="card.front"
-                disabled>
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <label for="back" class="col-sm-2 col-form-label">
-              Back
-            </label>
-            <div class="col-sm-10">
-              <input type="text" 
-                class="form-control" 
-                id="back"
-                [(ngModel)]="card.back"
-                disabled>
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <div class="col-sm-2"></div>
-            <div class="col-sm-10">
-              <button type="button" 
-                class="btn btn-dark"
-                (click)="deleteCard()">Delete</button>
-              <button type="button"
-                class="btn btn-light"
-                (click)="goBack()">Cancel</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-1">
-        </div>
-
-      </div>
-    </div>
-  `
+  templateUrl: './delete-card.component.html'
 })
 
 export class DeleteCardComponent implements OnInit {
