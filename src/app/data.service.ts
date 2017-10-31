@@ -150,14 +150,14 @@ export class DataService {
     .catch(this.handleError);
   }
 
-  createDeck(deck: Deck): void {
+  createDeck(deck: Deck): Promise<Deck> {
     let data = {
       "name": deck.name
     }
-    this.http.post(this.apiUrl + `/decks/`, JSON.stringify(data), 
+    return this.http.post(this.apiUrl + `/decks/`, JSON.stringify(data), 
       {headers:this.headers})
     .toPromise()
-    .then()
+    .then(response => response.json() as Deck)
     .catch(this.handleError);
   }
 
