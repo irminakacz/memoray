@@ -16,6 +16,7 @@ export class AddCardComponent implements OnInit {
   successMessage: string;
 
   card: Card;
+  cards: Card[];
   decks: Deck[];
 
   constructor(
@@ -25,7 +26,13 @@ export class AddCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.card = new Card;
+    this.getCards();
     this.getDecks();
+  }
+
+  getCards(): void {
+    this.dataService.getCards()
+    .then(cards => this.cards = cards);
   }
 
   getDecks(): void {
@@ -34,12 +41,20 @@ export class AddCardComponent implements OnInit {
   }
 
   createCard(): void {
-    if (this.card.deck && this.card.front && this.card.back) {
-      this.dataService.createCard(this.card);
-      this.card = new Card;
-      this.successMessage = "Card added successfuly."
+    this.errorMessage = "";
+    this.successMessage = "";
+
+    if (this.cards.find(card => card.front === this.card.front && 
+      card.back === this.card.back && card.deck === +this.card.deck)) {
+      this.errorMessage = "Card already exist.";
     } else {
-      this.errorMessage = "Fields cannot be left empty.";
+      if (this.card.deck && this.card.front && this.card.back) {
+        this.dataService.createCard(this.card);
+        this.card = new Card;
+        this.successMessage = "Card added successfuly."
+      } else {
+        this.errorMessage = "Fields cannot be left empty.";
+      }
     }
   }
 

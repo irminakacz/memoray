@@ -15,6 +15,7 @@ export class AddDeckComponent implements OnInit {
   successMessage: string;
 
   deck: Deck;
+  decks: Deck[];
 
   constructor(
     private router: Router,
@@ -23,15 +24,28 @@ export class AddDeckComponent implements OnInit {
 
   ngOnInit(): void {
     this.deck = new Deck;
+    this.getDecks();
+  }
+
+  getDecks(): void {
+    this.dataService.getDecks()
+    .then(decks => this.decks = decks);
   }
 
   createDeck(): void {
-    if (this.deck.name) {
-      this.dataService.createDeck(this.deck);
-      this.deck = new Deck;
-      this.successMessage = "Deck added successfuly."
+    this.successMessage = "";
+    this.errorMessage = "";
+
+    if (this.decks.find(deck => deck.name === this.deck.name)) {
+      this.errorMessage = "Deck already exist.";
     } else {
-      this.errorMessage = "Fields cannot be left empty.";
+      if (this.deck.name) {
+        this.dataService.createDeck(this.deck);
+        this.deck = new Deck;
+        this.successMessage = "Deck added successfuly."
+      } else {
+        this.errorMessage = "Fields cannot be left empty.";
+      }
     }
   }
 
