@@ -97,7 +97,14 @@ export class StatsComponent implements OnInit {
         ]
       }
     ]
-    this.answersByQualityChartLabels = ['0', '1', '2', '3', '4', '5'];
+    this.answersByQualityChartLabels = [
+      "Again",
+      "Very Hard",
+      "Hard",
+      "Good",
+      "Easy",
+      "Very Easy"
+    ];
     this.answersByQualityChartType = 'doughnut';
     this.answersByQualityChartLegend = true;
     this.answersByQualityChartData = [

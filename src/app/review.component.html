@@ -28,19 +28,25 @@
       <ng-template #answerVisible>
         <hr>
         <h4>{{dueCards[currentCard].back}}</h4>
-        <div class="btn-group">
+        <div class="btn-group" style="padding: 1em">
           <button class="btn btn-danger"
-                  (click)="review(0)">0</button>
+                  title="Complete blackout"
+                  (click)="review(0)">Again</button>
           <button class="btn btn-warning"
-                  (click)="review(1)">1</button>
+                  title="Incorrect response; the correct one remembered"
+                  (click)="review(1)">Very<br>Hard</button>
           <button class="btn btn-secondary"
-                  (click)="review(2)">2</button>
+                  title="Incorrect response; where the correct one seemed easy to recall"
+                  (click)="review(2)">Hard</button>
           <button class="btn btn-success"
-                  (click)="review(3)">3</button>
+                  title="Correct response recalled with serious difficulty"
+                  (click)="review(3)">Good</button>
           <button class="btn btn-info"
-                  (click)="review(4)">4</button>
+                  title="Correct response after hesitation"
+                  (click)="review(4)">Easy</button>
           <button class="btn btn-primary"
-                  (click)="review(5)">5</button>
+                  title="Perfect response"
+                  (click)="review(5)">Very<br>Easy</button>
         </div>
       </ng-template>
     </div>
