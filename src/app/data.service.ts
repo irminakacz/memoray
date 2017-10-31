@@ -144,6 +144,10 @@ export class DataService {
   }
 
   getDecks(): Promise<Deck[]> {
+    this.headers = new Headers({
+      'Content-Type': 'application/json',
+      'Authorization': 'JWT ' + localStorage.getItem('token')
+    });
     return this.http.get(this.apiUrl + '/decks/', {headers: this.headers})
     .toPromise()
     .then(response => response.json() as Deck[])

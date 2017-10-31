@@ -24,9 +24,9 @@ export class AuthService {
       this.token = JSON.parse(response['_body']).token;
       if (this.token) {
         localStorage.setItem('token', this.token);
-        this.isLoggedIn = true;
         localStorage.setItem('isLoggedIn', 'true');
         localStorage.setItem('username', username);
+        this.isLoggedIn = true;
       }
       return true;
     }).catch(() => this.isLoggedIn = false);

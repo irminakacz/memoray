@@ -23,7 +23,7 @@ export class LoginComponent {
         if (this.authService.isLoggedIn) {
           let redirect = this.authService.redirectUrl 
             ? this.authService.redirectUrl : '/menu/deck-list';
-            this.router.navigate([redirect]);
+          this.router.navigate([redirect]);
         } else {
           this.errorMessage = "Incorrect username or password.";
         }
