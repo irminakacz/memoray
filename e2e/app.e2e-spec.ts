@@ -3,23 +3,23 @@ import { by, element, browser } from 'protractor';
 
 describe('MemoRay frontend test', () => {
 
-  // it('should fail login with no credentials', () => {
-  //   browser.get('/login');
-  //   element(by.id('login-btn')).click();
+  it('should fail login with no credentials', () => {
+    browser.get('/login');
+    element(by.id('login-btn')).click();
 
-  //   expect(element(by.css('.alert-danger')).getText())
-  //     .toEqual("Fields cannot be empty.");
-  // });
+    expect(element(by.css('.alert-danger')).getText())
+      .toEqual("Fields cannot be empty.");
+  });
 
-  // it('should fail login with incorrect credentials', () => {
-  //   browser.get('/login');
-  //   element(by.id('username')).sendKeys('test');
-  //   element(by.id('password')).sendKeys('zaq1@WSX');
-  //   element(by.id('login-btn')).click();
+  it('should fail login with incorrect credentials', () => {
+    browser.get('/login');
+    element(by.id('username')).sendKeys('test');
+    element(by.id('password')).sendKeys('zaq1@WSX');
+    element(by.id('login-btn')).click();
 
-  //   expect(element(by.css('.alert-danger')).getText())
-  //     .toEqual("Incorrect username or password.");
-  // });
+    expect(element(by.css('.alert-danger')).getText())
+      .toEqual("Incorrect username or password.");
+  });
 
   it('should create new user and login', () => {
     browser.get('/login');
@@ -43,15 +43,15 @@ describe('MemoRay frontend test', () => {
     expect(element(by.id('deck-list-header')).getText()).toEqual('Decks');
   });
 
-  // it('should fail creating deck with no name', () => {
-  //   browser.get('/menu/deck-list');
-  //   element(by.id('deck-list-create-deck-btn')).click();
-  //   element(by.id('name')).sendKeys('');
-  //   element(by.id('add-deck-btn')).click();
+  it('should fail creating deck with no name', () => {
+    browser.get('/menu/deck-list');
+    element(by.id('deck-list-create-deck-btn')).click();
+    element(by.id('name')).sendKeys('');
+    element(by.id('add-deck-btn')).click();
 
-  //   expect(element(by.css('.alert-danger')).getText())
-  //     .toEqual("Name cannot be left empty.");
-  // });
+    expect(element(by.css('.alert-danger')).getText())
+      .toEqual("Name cannot be left empty.");
+  });
 
   it('should successfuly create new deck', () => {
     browser.get('/menu/deck-list');
@@ -63,15 +63,15 @@ describe('MemoRay frontend test', () => {
       .toEqual("Deck added successfuly.");
   });
 
-  // it('should reject duplicate deck', () => {
-  //   browser.get('/menu/deck-list');
-  //   element(by.id('deck-list-create-deck-btn')).click();
-  //   element(by.id('name')).sendKeys('deck1');
-  //   element(by.id('add-deck-btn')).click();
+  it('should reject duplicate deck', () => {
+    browser.get('/menu/deck-list');
+    element(by.id('deck-list-create-deck-btn')).click();
+    element(by.id('name')).sendKeys('deck1');
+    element(by.id('add-deck-btn')).click();
 
-  //   expect(element(by.css('.alert-danger')).getText())
-  //     .toEqual("Deck already exist.");
-  // });
+    expect(element(by.css('.alert-danger')).getText())
+      .toEqual("Deck already exist.");
+  });
 
   it('should reject card with no data', () => {
     browser.get('/menu/deck-list');
@@ -106,10 +106,17 @@ describe('MemoRay frontend test', () => {
       .toEqual("Card already exist.");
   });
 
-  it('should reject duplicate card', () => {
+  it('should review a card', () => {
     browser.get('/menu/deck-list');
-    element(by.binding('deck.name')).click();
-    expect(element(by.id('deck-header')).getText()).toEqual('Deck1');
+    let decks = element.all(by.css('.table-hover'));
+    decks.all(by.css('tr td'));
+    decks.get(0).click();
+    expect(element(by.id('deck-header')).getText()).toEqual('deck1');
+    element(by.id('review-btn')).click();
+    element(by.id('show-answer-btn')).click();
+    element(by.css('.btn-info')).click();
+    expect(element(by.css('.deck')).getText())
+      .toContain("Congratulations! No more cards to review!");
   });
 
   it('should delete user', () => {

@@ -1,9 +1,10 @@
-<div class="container" style="padding: 2em">
+<div class="container deck" style="padding: 2em">
   <div *ngIf="deck">
     <h2 id="deck-header">{{deck.name}}</h2> 
     <div *ngIf="dueCards">
       <div>Cards to study: {{dueCards}}
         <button class="btn btn-secondary btn-sm" 
+                id="review-btn"
                 style="margin-left: 1em"
                 (click)="this.reviewDeck()">Review</button>
       </div>

@@ -23,6 +23,7 @@
 
       <button class="btn btn-primary" 
               *ngIf="answerHidden; else answerVisible"
+              id="show-answer-btn"
               (click)="showAnswer()">Show answer</button>
 
       <ng-template #answerVisible>
