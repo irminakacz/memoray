@@ -1,6 +1,6 @@
 <div class="container" style="margin: 2em">
-  <h3 id="header">Decks
-    <button class="btn btn-secondary btn-sm"
+  <h3 id="deck-list-header">Decks
+    <button id="deck-list-create-deck-btn" class="btn btn-secondary btn-sm"
             (click)="createDeck()">
       <i class="fa fa-plus" aria-hidden="true"></i>
     </button>
@@ -18,11 +18,11 @@
         <td (click)="goToDeck(deck.id)">{{deck.name}}</td>
         <td (click)="goToDeck(deck.id)">{{this.getDueCards(deck)}}</td>
         <td>
-          <button class="btn btn-secondary"
+          <button class="btn btn-secondary edit"
                   (click)="editDeck(deck.id)">
             <i class="fa fa-pencil" aria-hidden="true"></i>
           </button>
-          <button class="btn btn-secondary"
+          <button class="btn btn-secondary delete"
                   (click)="deleteDeck(deck.id)">
             <i class="fa fa-times" aria-hidden="true"></i>
           </button>

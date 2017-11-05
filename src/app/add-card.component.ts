@@ -49,7 +49,8 @@ export class AddCardComponent implements OnInit {
       this.errorMessage = "Card already exist.";
     } else {
       if (this.card.deck && this.card.front && this.card.back) {
-        this.dataService.createCard(this.card);
+        this.dataService.createCard(this.card)
+          .then(card => this.cards.push(card));
         this.card = new Card;
         this.successMessage = "Card added successfuly."
       } else {

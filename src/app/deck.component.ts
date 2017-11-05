@@ -9,23 +9,7 @@ import { DataService } from './data.service';
 
 @Component({
   selector: 'deck',
-  template: `
-    <div class="container" style="padding: 2em">
-      <div *ngIf="deck">
-        <h2>{{deck.name}}</h2> 
-        <div *ngIf="dueCards">
-          <div>Cards to study: {{dueCards}}
-          <button class="btn btn-secondary btn-sm" 
-            style="margin-left: 1em"
-            (click)="this.reviewDeck()">Review</button>
-          </div>
-        </div>
-        <div *ngIf="!dueCards">
-          Congratulations! No more cards to review!
-        </div>
-      </div>
-    </div>
-  `,
+  templateUrl: './deck.component.html'
 })
 
 export class DeckComponent implements OnInit {

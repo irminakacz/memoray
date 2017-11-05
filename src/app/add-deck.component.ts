@@ -44,7 +44,7 @@ export class AddDeckComponent implements OnInit {
         this.deck = new Deck;
         this.successMessage = "Deck added successfuly."
       } else {
-        this.errorMessage = "Fields cannot be left empty.";
+        this.errorMessage = "Name cannot be left empty.";
       }
     }
   }
