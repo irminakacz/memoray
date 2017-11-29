@@ -53,22 +53,40 @@ export class ReviewComponent implements OnInit {
   }
 
   review(answerQuality: number): void {
-    if (answerQuality < 3) {
-      this.dataService.review(this.dueCards[this.currentCard].id, answerQuality);
-      this.dueCards.push(this.dueCards[this.currentCard]);
-    } else {
-      this.dataService.review(this.dueCards[this.currentCard].id, answerQuality);
-    }
+    this.reviewCard(answerQuality)
+    this.putCardBackIfAnswerQualityToLow(answerQuality)
 
-    if (this.currentCard < this.dueCards.length-1) {
-      this.answerHidden = true;
-      this.currentCard += 1;
+    if (this.moreCardsToReview()) {
+      this.showNextCard()
     } else {
-      setTimeout(
-        () => this.router.navigate(['/menu/deck', this.deck.id]),
-        200
-      );
+      this.goBackToDeck()
     }
+  }
+
+  putCardBackIfAnswerQualityToLow(answerQuality: number): void {
+    if (answerQuality < 3) {
+      this.dueCards.push(this.dueCards[this.currentCard]);
+    }
+  }
+
+  reviewCard(answerQuality: number): void {
+    this.dataService.review(this.dueCards[this.currentCard].id, answerQuality);
+  }
+
+  moreCardsToReview(): boolean {
+    return this.currentCard < this.dueCards.length-1;
+  }
+
+  showNextCard(): void {
+    this.answerHidden = true;
+    this.currentCard += 1;
+  }
+
+  goBackToDeck(): void {
+    setTimeout(
+      () => this.router.navigate(['/menu/deck', this.deck.id]),
+      200
+    );
   }
 
   editCard(id: number): void {
