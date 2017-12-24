@@ -57,9 +57,9 @@ export class ReviewComponent implements OnInit {
     this.putCardBackIfAnswerQualityToLow(answerQuality)
 
     if (this.moreCardsToReview()) {
-      this.showNextCard()
+      this.showNextCard();
     } else {
-      this.goBackToDeck()
+      this.goBackToDeck();
     }
   }
 
@@ -83,10 +83,7 @@ export class ReviewComponent implements OnInit {
   }
 
   goBackToDeck(): void {
-    setTimeout(
-      () => this.router.navigate(['/menu/deck', this.deck.id]),
-      200
-    );
+    this.router.navigate(['/menu/deck', this.deck.id])
   }
 
   editCard(id: number): void {

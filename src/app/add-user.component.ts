@@ -24,22 +24,28 @@ export class AddUserComponent {
     private dataService: DataService
   ) { }
 
-  createUser(): void {
+  createUser(): string {
+    if (this.fieldsEmpty()) return this.errorMessage = "Fields cannot be empty.";
+    if (this.passwordTooShort()) return this.errorMessage = "Password too short.";
+    if (this.passwordsNotMatch()) return this.errorMessage = "Passwords don't match.";
+    this.dataService.createUser(this.username, this.password)
+      .then(() => this.successMessage = "Account created successfuly.")
+      .catch(() => this.errorMessage = "This user already exist.")
+  }
+
+  fieldsEmpty(): boolean {
     if (this.username && this.password && this.repeatedPassword) {
-      if (this.password.length >= 6) {
-        if (this.password === this.repeatedPassword) {
-          this.dataService.createUser(this.username, this.password)
-            .then(() => this.successMessage = "Account created successfuly.")
-            .catch(() => this.errorMessage = "This user already exist.")
-        } else {
-          this.errorMessage = "Passwords don't match.";
-        }
-      } else {
-        this.errorMessage = "Password too short.";
-      }
-    } else {
-      this.errorMessage = "Fields cannot be empty.";
+      return false;
     }
+    return true;
+  }
+
+  passwordTooShort(): boolean {
+    return this.password.length < 6;
+  }
+
+  passwordsNotMatch(): boolean {
+    return this.password !== this.repeatedPassword;
   }
 
   goBack(): void {
