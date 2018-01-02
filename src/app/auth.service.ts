@@ -29,7 +29,10 @@ export class AuthService {
         this.isLoggedIn = true;
       }
       return true;
-    }).catch(() => this.isLoggedIn = false);
+    }).catch(() => {
+      this.isLoggedIn = false;
+      return false;
+    });
   }
 
   logout(): void {

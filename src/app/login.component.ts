@@ -17,20 +17,29 @@ export class LoginComponent {
     public router: Router
   ) { }
 
-  login() {
-    if (this.username && this.password) {
-      this.authService.login(this.username, this.password).then(() => {
-        if (this.authService.isLoggedIn) {
-          let redirect = this.authService.redirectUrl 
-            ? this.authService.redirectUrl : '/menu/deck-list';
-          this.router.navigate([redirect]);
+  login(): string {
+    if (this.fieldsEmpty()) {
+      return this.errorMessage = "Fields cannot be empty.";
+    }
+
+    this.authService.login(this.username, this.password)
+      .then((response) => {
+        if (response) {
+          this.redirectUser();
         } else {
-          this.errorMessage = "Incorrect username or password.";
+          return this.errorMessage = "Incorrect username or password.";
         }
       });
-    } else {
-      this.errorMessage = "Fields cannot be empty.";
-    }
+  }
+
+  fieldsEmpty(): boolean {
+    return !(this.username && this.password)
+  }
+
+  redirectUser(): void {
+    let redirect = this.authService.redirectUrl 
+    ? this.authService.redirectUrl : '/menu/deck-list';
+    this.router.navigate([redirect]);
   }
 
   logout() {

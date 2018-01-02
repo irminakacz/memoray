@@ -35,9 +35,7 @@ export class EditUserComponent implements OnInit {
 
   getUser(): void {
     this.dataService.getUser()
-    .then(user => {
-      this.user = user;
-    });
+    .then(user => this.user = user);
   }
 
   editUser(): void {
@@ -59,11 +57,14 @@ export class EditUserComponent implements OnInit {
   }
 
   deleteUser(): void {
-    let isUserSure = confirm("Are you sure you want to delete your account?\n(You will lost all decks and cards in the process)");
-    if (isUserSure) {
+    if (this.isUserSure()) {
       this.dataService.deleteUser(this.user.id);
       this.authService.logout();
     }
+  }
+
+  isUserSure(): boolean {
+    return confirm("Are you sure you want to delete your account?\n(You will lost all decks and cards in the process)");
   }
 
   goBack(): void {

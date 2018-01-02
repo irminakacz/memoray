@@ -49,8 +49,7 @@ export class DataService {
     let headers = new Headers({'Content-Type': 'application/json'});
     let data = {
       "username": username,
-      "password": password,
-      "decks": []
+      "password": password
     }
     return this.http.post(this.apiUrl + `/users/`, JSON.stringify(data),
       {headers: headers})

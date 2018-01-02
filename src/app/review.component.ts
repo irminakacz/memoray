@@ -54,7 +54,7 @@ export class ReviewComponent implements OnInit {
 
   review(answerQuality: number): void {
     this.reviewCard(answerQuality)
-    this.putCardBackIfAnswerQualityToLow(answerQuality)
+    this.putCardBackIfAnswerQualityTooLow(answerQuality)
 
     if (this.moreCardsToReview()) {
       this.showNextCard();
@@ -63,14 +63,15 @@ export class ReviewComponent implements OnInit {
     }
   }
 
-  putCardBackIfAnswerQualityToLow(answerQuality: number): void {
+  putCardBackIfAnswerQualityTooLow(answerQuality: number): void {
     if (answerQuality < 3) {
       this.dueCards.push(this.dueCards[this.currentCard]);
     }
   }
 
   reviewCard(answerQuality: number): void {
-    this.dataService.review(this.dueCards[this.currentCard].id, answerQuality);
+    this.dataService.review(
+      this.dueCards[this.currentCard].id, answerQuality);
   }
 
   moreCardsToReview(): boolean {
