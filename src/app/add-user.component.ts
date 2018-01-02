@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-
 import { DataService } from './data.service';
-
 import { Card } from './card';
 import { Deck } from './deck';
 
@@ -14,7 +12,6 @@ import { Deck } from './deck';
 export class AddUserComponent {
   errorMessage: string;
   successMessage: string;
-
   username: string;
   password: string;
   repeatedPassword: string;
@@ -25,19 +22,23 @@ export class AddUserComponent {
   ) { }
 
   createUser(): string {
-    if (this.fieldsEmpty()) return this.errorMessage = "Fields cannot be empty.";
-    if (this.passwordTooShort()) return this.errorMessage = "Password too short.";
-    if (this.passwordsNotMatch()) return this.errorMessage = "Passwords don't match.";
+    if (this.fieldsEmpty()) 
+      return this.errorMessage = "Fields cannot be empty.";
+    if (this.passwordTooShort()) 
+      return this.errorMessage = "Password too short.";
+    if (this.passwordsNotMatch()) 
+      return this.errorMessage = "Passwords don't match.";
     this.dataService.createUser(this.username, this.password)
       .then(() => this.successMessage = "Account created successfuly.")
       .catch(() => this.errorMessage = "This user already exist.")
   }
 
+  goBack(): void {
+    this.router.navigate(['/menu/deck-list']);
+  }
+
   fieldsEmpty(): boolean {
-    if (this.username && this.password && this.repeatedPassword) {
-      return false;
-    }
-    return true;
+    return !(this.username && this.password && this.repeatedPassword);
   }
 
   passwordTooShort(): boolean {
@@ -46,9 +47,5 @@ export class AddUserComponent {
 
   passwordsNotMatch(): boolean {
     return this.password !== this.repeatedPassword;
-  }
-
-  goBack(): void {
-    this.router.navigate(['/menu/deck-list']);
   }
 }
